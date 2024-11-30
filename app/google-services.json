@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "119516687907",
+    "firebase_url": "https://eventslens-dda3a-default-rtdb.firebaseio.com",
+    "project_id": "eventslens-dda3a",
+    "storage_bucket": "eventslens-dda3a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119516687907:android:b787c9fb1da81a874e4b96",
+        "android_client_info": {
+          "package_name": "com.productivityservicehub.eventlens"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "119516687907-tapv7qpnbdb5m8addhaqqg0qtbj3n8kl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.productivityservicehub.eventlens",
+            "certificate_hash": "c06515acaca65ead2de4c733c5b4c96012b4eb35"
+          }
+        },
+        {
+          "client_id": "119516687907-bkhlasavcsavp1lqpcg851919dln9qv2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwo7sObCYmOqpLIGPsFT-v79rDjzFw6hk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "119516687907-bkhlasavcsavp1lqpcg851919dln9qv2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
