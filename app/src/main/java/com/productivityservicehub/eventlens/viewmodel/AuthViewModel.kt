@@ -17,11 +17,13 @@ class AuthViewModel : ViewModel() {
     private val auth = FirebaseAuth.getInstance()
     private val storage = FirebaseStorage.getInstance()
     private val database = FirebaseDatabase.getInstance()
-
+    private val _isUserLoggedIn = MutableStateFlow(false)
+    val isUserLoggedIn: StateFlow<Boolean> = _isUserLoggedIn
 
     suspend fun login(email: String, password: String): Boolean {
         return try {
             auth.signInWithEmailAndPassword(email, password).await()
+            _isUserLoggedIn.value = true // Set to true on successful login
             true // Login successful
         } catch (e: Exception) {
             false // Login failed

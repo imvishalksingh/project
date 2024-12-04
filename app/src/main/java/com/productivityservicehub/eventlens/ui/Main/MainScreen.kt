@@ -31,6 +31,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -40,6 +41,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -81,34 +83,18 @@ import com.productivityservicehub.eventlens.ui.screen.UserHomeScreen
 import com.productivityservicehub.eventlens.viewmodel.ProfilesViewModel
 import kotlinx.coroutines.tasks.await
 
-@Composable
-fun AppNavigation(user: User, role: String, profilesViewModel: ProfilesViewModel) {
-    val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "main") {
-        composable("main") {
-            MainScreen(user, role, profilesViewModel)
-        }
-        composable(
-            "messages/{photographerId}",
-            arguments = listOf(navArgument("photographerId") { type = NavType.StringType })
-        ) { backStackEntry ->
-            val photographerId = backStackEntry.arguments?.getString("photographerId")
-            if (photographerId != null) {
-                MessagesScreen(photographerId = photographerId)
-            }
-        }
-    }
-}
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen(
-    user: User,
     role: String,
     profilesViewModel: ProfilesViewModel,
+    navController: NavController
 ) {
+
+
     val items = if (role == "USER") {
         listOf(
             BottomNavItem.Home,
@@ -139,12 +125,11 @@ fun MainScreen(
         when (selectedItem) {
             0 -> {
                 if (role == "USER") {
-                    UserHomeScreen(
-                        profilesViewModel = profilesViewModel,
-                        onPhotographerClick = { photographerId ->
-
-                        }
-                    )
+                    UserHomeScreen(profilesViewModel,onEventClick = { event ->
+                        navController.navigate(
+                            "event?name=${event.name}&date=${event.date}&location=${event.location}&description=${event.description}&image=${event.image}"
+                        )
+                    })
                 } else PhotographerDashboardScreen()
             }
             1 -> MessagesListScreen()
@@ -556,3 +541,5 @@ fun EditProfilePopup(
         }
     }
 }
+
+
